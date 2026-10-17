@@ -1,14 +1,11 @@
 from contextlib import asynccontextmanager
-from pathlib import Path
 
 from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
 
 from app import models  # noqa: F401  (hace que Python conozca las tablas)
 from app.database import crear_tablas
-
-BASE_DIR = Path(__file__).resolve().parent
-templates = Jinja2Templates(directory=BASE_DIR / "templates")
+from app.routers import materias
+from app.templating import templates
 
 
 @asynccontextmanager
@@ -18,6 +15,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Asistente de Estudio", lifespan=lifespan)
+app.include_router(materias.router)
 
 
 @app.get("/")

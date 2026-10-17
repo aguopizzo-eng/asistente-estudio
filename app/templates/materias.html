@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %}Materias{% endblock %}
+
+{% block contenido %}
+  <h1>Materias</h1>
+
+  <form method="post" action="/materias">
+    <input type="text" name="nombre" placeholder="Nombre de la materia" maxlength="100" required>
+    <button type="submit">Crear materia</button>
+  </form>
+
+  {% if materias %}
+    <ul>
+      {% for materia in materias %}
+        <li>{{ materia.nombre }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Todavía no hay materias. Crea la primera.</p>
+  {% endif %}
+{% endblock %}
