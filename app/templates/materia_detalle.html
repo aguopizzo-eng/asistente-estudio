@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ materia.nombre }}{% endblock %}
+
+{% block contenido %}
+  <p><a href="/materias">← Volver a materias</a></p>
+  <h1>{{ materia.nombre }}</h1>
+
+  <h2>Temas</h2>
+
+  <form method="post" action="/materias/{{ materia.id }}/temas">
+    <input type="text" name="nombre" placeholder="Nombre del tema" maxlength="100" required>
+    <button type="submit">Crear tema</button>
+  </form>
+
+  {% if temas %}
+    <ul>
+      {% for tema in temas %}
+        <li>{{ tema.nombre }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Esta materia todavía no tiene temas.</p>
+  {% endif %}
+{% endblock %}

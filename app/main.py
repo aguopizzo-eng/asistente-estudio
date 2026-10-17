@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 
 from app import models  # noqa: F401  (hace que Python conozca las tablas)
 from app.database import crear_tablas
-from app.routers import materias
+from app.routers import materias, temas
 from app.templating import templates
 
 
@@ -16,6 +16,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Asistente de Estudio", lifespan=lifespan)
 app.include_router(materias.router)
+app.include_router(temas.router)
 
 
 @app.get("/")

@@ -13,7 +13,7 @@
   {% if materias %}
     <ul>
       {% for materia in materias %}
-        <li>{{ materia.nombre }}</li>
+        <li><a href="/materias/{{ materia.id }}">{{ materia.nombre }}</a></li>
       {% endfor %}
     </ul>
   {% else %}
